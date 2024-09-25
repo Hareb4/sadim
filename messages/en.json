@@ -1,0 +1,33 @@
+{
+  "switch_to_english": "Switch to English",
+  "switch_to_arabic": "Switch to Arabic",
+  "Mode": {
+    "switch_to_dark_mode": "Switch to Dark Mode",
+    "switch_to_light_mode": "Switch to Light Mode"
+  },
+  "HomePage": {
+    "title": "Welcome!",
+    "heroaction": "Esraa is ready today",
+    "herotext": "The best note-taking app in history",
+    "subhero": "Are you sure??",
+    "new": "New",
+    "docs": "Documentation",
+    "watchvideo": "Watch the video",
+    "feature1": "Keyboard Shortcuts",
+    "learnmore": "Learn More"
+  },
+  "UserActions": {
+    "signin": "Sign In",
+    "register": "New User",
+    "signout": "Sign Out"
+  },
+  "Notes": {
+    "your_notes": "Your Notes",
+    "back_to_your_notes": "back to your notes",
+    "newNote": "New Note",
+    "time_of_write": "Time of Write",
+    "delete_note": "Delete the Note",
+    "image": "Image",
+    "link": "Link"
+  }
+}

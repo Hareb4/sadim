@@ -1,0 +1,33 @@
+{
+  "switch_to_english": "التبديل إلى الإنجليزية",
+  "switch_to_arabic": "التبديل إلى العربية",
+  "Mode": {
+    "switch_to_dark_mode": "التبديل إلى الوضع الليلي",
+    "switch_to_light_mode": "التبديل إلى الوضع النهاري"
+  },
+  "HomePage": {
+    "title": "يامرحبا وسهلا",
+    "heroaction": "سديم جاهزه اليوم",
+    "herotext": "أفضل تطبيق ملاحظات في التاريخ",
+    "subhero": "متأكدين ؟؟",
+    "new": "جديد",
+    "docs": "تعليمات",
+    "watchvideo": "شاهد المقطع",
+    "feature1": "اختصارات مفتاحية",
+    "learnmore": "تعلم المزيد"
+  },
+  "UserActions": {
+    "signin": "تسجيل دخول",
+    "register": "مستخدم جديد",
+    "signout": "تسجيل خروج"
+  },
+  "Notes": {
+    "your_notes": "ملاحظاتك",
+    "back_to_your_notes": "العودة الى ملاحظاتك",
+    "newNote": "ملاحظة جديدة",
+    "time_of_write": "وقت الكتابة",
+    "delete_note": "حذف الملاحظة",
+    "image": "صورة",
+    "link": "رابط"
+  }
+}
