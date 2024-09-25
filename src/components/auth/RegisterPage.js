@@ -23,6 +23,7 @@ export default function RegisterPageComponent() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [openModal, setOpenModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -39,6 +40,55 @@ export default function RegisterPageComponent() {
   };
 
   const handleRegister = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setIsLoading(true);
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setError("كلمات المرور غير متطابقة");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      // Check if the user already exists
+      const userExists = await checkIfUserExists(email);
+      if (userExists) {
+        setError("هذا البريد الإلكتروني مسجل بالفعل");
+        setIsLoading(false);
+        return;
+      }
+
+      // Proceed with sign-up
+      const { data: signUpData, error: signUpError } =
+        await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              display_name: displayName,
+            },
+          },
+        });
+
+      if (signUpError) throw signUpError;
+
+      // If the sign-up is successful, show the confirmation message
+      if (signUpData.user) {
+        setOpenModal(
+          "تم إرسال رابط التأكيد إلى بريدك الإلكتروني. يرجى التحقق من بريدك الإلكتروني لإكمال التسجيل."
+        );
+      }
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRegister2 = async (e) => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
@@ -174,6 +224,33 @@ export default function RegisterPageComponent() {
               <p className="bg-[#ffcccc] text-[#ff0000] p-2 w-full text-right rounded">
                 {error}
               </p>
+            )}
+            {openModal && (
+              // <p className="bg-[#ffcccc] text-[#ff0000] p-2 w-full text-right rounded">
+
+              // </p>
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 m-0">
+                <p className="text-gray-600 dark:text-gray-300 mb-6">{error}</p>
+                <button onClick={() => router.push("/login")}>
+                  اذهب إلى صفحة تسجيل الدخول
+                </button>
+                {/* <div className="flex justify-end gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsDeleteModalOpen(false)}
+                    className="dark:bg-zinc-700 dark:text-white"
+                  >
+                    إلغاء
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={handleDeleteConfirmation}
+                    className="dark:bg-red-700 dark:hover:bg-red-600"
+                  >
+                    حذف
+                  </Button>
+                </div> */}
+              </div>
             )}
           </form>
         </CardContent>
