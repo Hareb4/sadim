@@ -47,8 +47,17 @@ function CustomSlashMenu(
     </div>
   );
 }
+interface BlockNoteEditorProps {
+  initialContent: string; // Expecting a JSON string
+  onChange: (content: string) => void;
+  onHtmlcontent: (html: string) => void;
+}
 
-const BlockNoteEditor = ({ initialContent, onChange, onHtmlcontent }) => {
+const BlockNoteEditor = ({
+  initialContent,
+  onChange,
+  onHtmlcontent,
+}: BlockNoteEditorProps) => {
   const [htmlContent, setHtmlContent] = useState("");
   const { theme } = useTheme();
 
