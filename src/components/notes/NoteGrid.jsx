@@ -158,7 +158,7 @@ export default function NoteGrid() {
                 className="transition-transform" // Subtle hover effect
               >
                 <Card
-                  className={`overflow-hidden transition-shadow bg-[#2b2b2b] duration-200 hover:shadow-lg rounded-lg mb-6`}
+                  className={`overflow-hidden transition-shadow duration-200 hover:shadow-lg rounded-lg mb-6`}
                   // style={{ backgroundColor: note.color }}
                 >
                   <Link href={`/notes/${note.id}`} passHref prefetch>
