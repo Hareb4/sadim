@@ -231,9 +231,9 @@ export default function RegisterPageComponent() {
               // </p>
               <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 m-0">
                 <p className="text-gray-600 dark:text-gray-300 mb-6">{error}</p>
-                <button onClick={() => router.push("/login")}>
+                <Button onClick={() => router.push("/login")}>
                   اذهب إلى صفحة تسجيل الدخول
-                </button>
+                </Button>
                 {/* <div className="flex justify-end gap-2">
                   <Button
                     variant="outline"
