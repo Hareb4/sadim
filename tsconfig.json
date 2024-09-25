@@ -15,6 +15,7 @@
     "noEmit": true,
     "incremental": true,
     "moduleResolution": "node",
+    "noImplicitAny": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve", // Handle JSX in .jsx and .tsx files
