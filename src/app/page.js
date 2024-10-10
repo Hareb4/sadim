@@ -41,12 +41,12 @@ export default function Home() {
   const t = useTranslations("HomePage");
   return (
     <div
-      className={`bg-black  text-white ${inter.className} rtl relative`}
+      className={`bg-black text-white ${inter.className} rtl relative`}
       dir="rtl"
     >
-      <div className="flex flex-row justify-between items-center mx-3 bg-opacity-20 p-2 rounded-md">
-        <div className="flex flex-row gap-4 items-baseline">
-          <p className="font-bold text-xl text-fca311">{arabicDataset.name}حارب </p>
+      <div className="flex flex-row sm:flex-row justify-between items-center mx-3 bg-opacity-20 p-2 rounded-md">
+        <div className="flex flex-col sm:flex-row gap-4 items-baseline">
+          <p className="font-bold text-lg text-fca311">{arabicDataset.name}</p>
           <div className="hidden sm:flex sm:flex-row-reverse sm:justify-between sm:items-center sm:gap-4">
             <p dir="rtl" className="text-e5e5e5">
               {arabicDataset.docs}
@@ -55,14 +55,14 @@ export default function Home() {
         </div>
         <Link
           href={"/login"}
-          className="bg-[#fca311] text-black px-2 py-1 rounded"
+          className="mt-2 sm:mt-0 bg-[#fca311] text-black px-2 py-1 rounded transition-colors duration-150 hover:bg-white"
         >
           {arabicDataset.signin}
         </Link>
       </div>
 
-      <section className="relative overflow-hidden bg-gradient-to-b from-14213d via-transparent to-transparent pb-12 pt-20 sm:pb-16 sm:pt-32 lg:pb-24 xl:pb-32 xl:pt-40">
-        {/* pattern grid */}
+      <section className="relative overflow-hidden">
+        {/* Pattern grid */}
         <Particles
           className="absolute inset-0"
           quantity={4000}
@@ -70,11 +70,11 @@ export default function Home() {
           color="#ffffff"
           refresh
         />
-        {/* hero sec */}
+        {/* Hero section */}
         <div className="relative z-20 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <BlurFade delay={0.25} inView>
-              <h1 className="text-4xl tracking-tight text-white sm:text-6xl sm:leading-normal lg:text-nowrap">
+              <h1 className="text-4xl tracking-tight text-white sm:text-6xl lg:text-7xl sm:leading-normal lg:leading-normal mt-10">
                 {arabicDataset.herotext}
               </h1>
             </BlurFade>
@@ -85,23 +85,23 @@ export default function Home() {
             </BlurFade>
             <BlurFade delay={0.25 * 3} inView>
               <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a
+                <Link
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#fca311] px-4 py-3 text-sm text-black shadow-sm transition-all duration-150 hover:bg-white hover:border-in-2 hover:border-[#fca311] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fca311"
-                  href="#"
+                  href={"/register"}
                 >
                   {arabicDataset.learnmore}
                   <ArrowLeftIcon />
-                </a>
+                </Link>
               </div>
             </BlurFade>
           </div>
           <div className="relative mx-auto mt-10 max-w-lg">
             <Image
-              src="/clark-van-der-beken-oClVYJk7Cgo-unsplash.jpg" // Update with the actual path
+              src="/noteview-dark.png" // Update with the actual path
               alt="App visual representation"
-              width={250} // Adjust width as needed
-              height={150} // Adjust height as needed
-              priority={false}
+              width={300}
+              height={200}
+              layout="responsive"
               className="w-full rounded-2xl border border-e5e5e5 shadow"
             />
           </div>
@@ -112,7 +112,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center">
             <p className="text-sm">© 2024 سديم. جميع الحقوق محفوظة.</p>
-            <div className="mt-4 flex justify-center gap-4">
+            <div className="mt-4 flex flex-col sm:flex-row justify-center gap-4">
               <a href="#" className="text-e5e5e5 hover:text-white">
                 الخصوصية
               </a>
