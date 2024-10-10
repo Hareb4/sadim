@@ -50,13 +50,13 @@ function CustomSlashMenu(
 interface BlockNoteEditorProps {
   initialContent: string; // Expecting a JSON string
   onChange: (content: string) => void;
-  onHtmlcontent: (html: string) => void;
+  
 }
 
 const BlockNoteEditor = ({
   initialContent,
   onChange,
-  onHtmlcontent,
+
 }: BlockNoteEditorProps) => {
   const [htmlContent, setHtmlContent] = useState("");
   const { theme } = useTheme();
@@ -80,10 +80,7 @@ const BlockNoteEditor = ({
         onChange(jsonContent);
 
         // Convert blocks to HTML
-        editor.blocksToHTMLLossy(blocks).then((html) => {
-          setHtmlContent(html);
-          onHtmlcontent(html);
-        });
+        
       });
 
       return unsubscribe;
@@ -106,7 +103,7 @@ const BlockNoteEditor = ({
           suggestionMenuComponent={CustomSlashMenu}
         />
       </BlockNoteView>
-      <input type="hidden" name="htmlContent" value={htmlContent} />
+      
     </div>
   );
 };
