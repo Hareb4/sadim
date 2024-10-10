@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+// import { Card } from "../customeui/Card";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -24,6 +25,9 @@ import {
 } from "@/components/ui/select";
 import { Share2Icon, TrashIcon, GridIcon, ListIcon } from "lucide-react";
 import { useTheme } from "next-themes";
+import { createClient } from "@/utils/supabase/client";
+
+const supabase = createClient();
 
 const colorOptions = [
   { value: "#ffffff", label: "White" },
@@ -36,7 +40,9 @@ export default function NoteGrid() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedNoteId, setSelectedNoteId] = useState(null);
   const [viewMode, setViewMode] = useState("grid");
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const user = supabase.auth.getUser();
+
   const { notes, deleteNote, updateNote, fetchNotes } = useNotes();
   const { theme } = useTheme();
   const router = useRouter();

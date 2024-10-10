@@ -58,7 +58,7 @@ const BlockNoteEditor = ({
   onChange,
   onHtmlcontent,
 }: BlockNoteEditorProps) => {
-  const [htmlContent, setHtmlContent] = useState("");
+  // const [htmlContent, setHtmlContent] = useState("");
   const { theme } = useTheme();
 
   const editor = useCreateBlockNote({
@@ -80,10 +80,10 @@ const BlockNoteEditor = ({
         onChange(jsonContent);
 
         // Convert blocks to HTML
-        editor.blocksToHTMLLossy(blocks).then((html) => {
-          setHtmlContent(html);
-          onHtmlcontent(html);
-        });
+        // editor.blocksToHTMLLossy(blocks).then((html) => {
+        //   setHtmlContent(html);
+        //   onHtmlcontent(html);
+        // });
       });
 
       return unsubscribe;
@@ -106,7 +106,7 @@ const BlockNoteEditor = ({
           suggestionMenuComponent={CustomSlashMenu}
         />
       </BlockNoteView>
-      <input type="hidden" name="htmlContent" value={htmlContent} />
+      {/* <input type="hidden" name="htmlContent" value={htmlContent} /> */}
     </div>
   );
 };

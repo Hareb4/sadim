@@ -16,10 +16,14 @@ import { useNotes } from "@/context/NotesContext";
 import NoteList from "@/components/notes/NoteList";
 import UserMenu from "@/components/customeui/UserMenu";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
+const supabase = createClient();
 
 export default function Sidebar() {
   const router = useRouter();
-  const { user } = useAuth();
+
+  // const { user } = useAuth();
+  const user = supabase.auth.getUser();
   const { addNote, notes, isLoading } = useNotes();
   const [isCreating, setIsCreating] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);

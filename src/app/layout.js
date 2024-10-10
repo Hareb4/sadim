@@ -1,11 +1,8 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import { Toaster } from "@/components/ui/toaster";
-import { NotesProvider } from "@/context/NotesContext";
 
 // import { appWithTranslation } from "next-i18next";
 
@@ -28,14 +25,9 @@ export default async function RootLayout({ children }) {
   return (
     <html lang={locale}>
       <body>
-        <AuthProvider>
-          <NextIntlClientProvider messages={messages}>
-          <NotesProvider>
-            {children}
-            <Toaster />
-            </NotesProvider>
-          </NextIntlClientProvider>
-        </AuthProvider>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

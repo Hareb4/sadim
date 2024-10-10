@@ -15,10 +15,14 @@ import { PersonIcon, ExitIcon, GearIcon } from "@radix-ui/react-icons";
 import { ThemeToggle } from "./ThemeToggle";
 import LocalSwitcher from "@/components/customeui/LocaleSwitcherSelect";
 import { useTheme } from "next-themes";
+import { createClient } from "@/utils/supabase/client";
+const supabase = createClient();
 
 const UserMenu = () => {
   const router = useRouter();
-  const { user, signOut } = useAuth();
+  // const { signOut } = useAuth();
+  const user = supabase.auth.getUser();
+
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -32,6 +36,12 @@ const UserMenu = () => {
       router.refresh();
     }
   }, [theme, mounted, router]);
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    // setUser(null); // Clear user state after signing out
+    router.push("/"); // Redirect to login page after sign out
+  };
 
   const handleSignOut = async () => {
     try {

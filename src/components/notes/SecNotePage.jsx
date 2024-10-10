@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
+// import { supabase } from "@/lib/supabaseClient";
 import { useAuth } from "@/components/providers/AuthProvider";
 import TagManager from "@/components/customeui/TagManager";
 import TextareaAutosize from "react-textarea-autosize";
@@ -10,23 +10,26 @@ import BlockNoteEditor from "./Editor";
 import { useDebounce } from "@/hooks/useDebounce";
 import Cover from "./Cover";
 import NoteSkeleton from "../customeui/NoteSkeleton";
+import { createClient } from "@/utils/supabase/client";
+const supabase = createClient();
 
 export default function SecNotePage() {
   const { id } = useParams();
   const router = useRouter();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const user = supabase.auth.getUser();
 
   const [note, setNote] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [html, setHtml] = useState("");
+  // const [html, setHtml] = useState("");
   const [coverUrl, setCoverUrl] = useState("");
 
   // Debounce values to avoid unnecessary frequent updates
   const debouncedTitle = useDebounce(title, 500);
   const debouncedContent = useDebounce(content, 500);
-  const debouncedHtml = useDebounce(html, 500);
+  // const debouncedHtml = useDebounce(html, 500);
 
   // Fetch the note on component mount
   useEffect(() => {
@@ -57,7 +60,7 @@ export default function SecNotePage() {
         setNote(data);
         setTitle(data.title);
         setContent(data.content);
-        setHtml(data.html_content);
+        // setHtml(data.html_content);
         setCoverUrl(data.cover_url || "");
       }
       setIsLoading(false);
@@ -104,11 +107,11 @@ export default function SecNotePage() {
   }, [debouncedContent, note?.content, updateNote]);
 
   // Debounced effect to update the note's HTML content
-  useEffect(() => {
-    if (debouncedHtml && debouncedHtml !== note?.html_content) {
-      updateNote({ html_content: debouncedHtml });
-    }
-  }, [debouncedHtml, note?.html_content, updateNote]);
+  // useEffect(() => {
+  //   if (debouncedHtml && debouncedHtml !== note?.html_content) {
+  //     updateNote({ html_content: debouncedHtml });
+  //   }
+  // }, [debouncedHtml, note?.html_content, updateNote]);
 
   // Show loading state if note is still being fetched
   if (isLoading) {
@@ -155,7 +158,7 @@ export default function SecNotePage() {
             <BlockNoteEditor
               initialContent={content}
               onChange={(content) => setContent(content)}
-              onHtmlcontent={(content) => setHtml(content)}
+              // onHtmlcontent={(content) => setHtml(content)}
             />
           </div>
         </div>

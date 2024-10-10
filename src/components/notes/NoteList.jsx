@@ -1,7 +1,5 @@
-"use client";
-
 import React, { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -13,12 +11,6 @@ import {
 import Link from "next/link";
 
 const NoteList = ({ notes }) => {
-  const router = useRouter();
-
-  const handleNoteClick = (id) => {
-    router.push(`/notes/${id}`);
-  };
-
   const isArabic = (text) => {
     const arabicPattern = /[\u0600-\u06FF]/;
     return arabicPattern.test(text);

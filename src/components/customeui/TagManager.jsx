@@ -1,19 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabaseClient";
+// import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PlusIcon, Cross2Icon } from "@radix-ui/react-icons";
 import TextareaAutosize from "react-textarea-autosize";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "../providers/AuthProvider";
+// import { useNotes } from "@/context/NotesContext";
+
+const supabase = createClient();
 
 export default function TagManager({ noteId }) {
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState("");
   const { toast } = useToast();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const user = supabase.auth.getUser();
+
+  // const { fetchTags, addTag, removeTag } = useNotes();
 
   useEffect(() => {
     if (noteId) {

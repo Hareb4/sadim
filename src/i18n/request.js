@@ -8,9 +8,7 @@ export default getRequestConfig(async () => {
   var updatedlocale = "ar";
   await locale.then((e) => {
     updatedlocale = e;
-    console.log("1: ", updatedlocale);
   });
-  console.log("2: ", updatedlocale);
 
   return {
     locale,
