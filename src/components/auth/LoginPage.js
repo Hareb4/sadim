@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-// import { supabase } from "@/lib/supabaseClient";
-import { createClient } from "@/utils/supabase/client";
+import { supabase } from "@/lib/supabaseClient";
 import Link from "next/link";
 import {
   Card,
@@ -17,8 +16,6 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Google } from "@mui/icons-material";
-
-const supabase = createClient();
 
 export default function LoginPageComponent() {
   const [email, setEmail] = useState("");

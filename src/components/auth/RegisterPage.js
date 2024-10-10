@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-// import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,8 +16,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { PasswordStrength } from "../customeui/PasswordStrength";
-import { createClient } from "@/utils/supabase/client";
-const supabase = createClient();
 
 export default function RegisterPageComponent() {
   const [email, setEmail] = useState("");

@@ -5,13 +5,10 @@ import React, {
   useContext,
   useReducer,
   useEffect,
-  useState,
   useCallback,
 } from "react";
-// import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { createClient } from "@/utils/supabase/client";
-const supabase = createClient();
 
 const NotesContext = createContext();
 
@@ -27,12 +24,6 @@ const notesReducer = (state, action) => {
       );
     case "DELETE_NOTE":
       return state.filter((note) => note.id !== action.payload);
-    // case "SET_TAGS":
-    //   return action.payload;
-    // case "ADD_TAG":
-    //   return [action.payload, ...state];
-    // case "DELETE_TAG":
-    //   return state.filter((note) => note.id !== action.payload);
     default:
       return state;
   }
@@ -40,24 +31,7 @@ const notesReducer = (state, action) => {
 
 export const NotesProvider = ({ children }) => {
   const [notes, dispatch] = useReducer(notesReducer, []);
-  // const { user } = useAuth();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    async function getUser() {
-      const supabase = createClient();
-      const { data, error } = await supabase.auth.getUser();
-      if (error || !data?.user) {
-        console.log("no user");
-      } else {
-        console.log("o user");
-        setUser(data.user);
-      }
-    }
-    getUser();
-  }, []);
-
-  // console.log({ user });
+  const { user } = useAuth();
 
   // useEffect(() => {
   //   if (user) {
@@ -135,93 +109,6 @@ export const NotesProvider = ({ children }) => {
 
     return { error };
   };
-
-  // const fetchTags = async () => {
-  //   const { data, error } = await supabase
-  //     .from("note_tags")
-  //     .select("tags(*)")
-  //     .eq("note_id", noteId);
-
-  //   if (error) {
-  //     console.error("Error fetching tags:", error);
-  //   } else {
-  //     setTags(data.map((item) => item.tags));
-  //   }
-  // };
-
-  // const addTag = async () => {
-  //   if (!newTag.trim() || !noteId) return;
-
-  //   const { data: existingTag, error: fetchError } = await supabase
-  //     .from("tags")
-  //     .select("id")
-  //     .eq("name", newTag.trim())
-  //     .single();
-
-  //   let tagId;
-
-  //   if (fetchError) {
-  //     const { data: newTagData, error: insertError } = await supabase
-  //       .from("tags")
-  //       .insert({ name: newTag.trim() })
-  //       .select()
-  //       .single();
-
-  //     if (insertError) {
-  //       console.error("Error creating new tag:", insertError);
-  //       toast({
-  //         title: "Error",
-  //         status: "error",
-  //       });
-  //       return;
-  //     }
-
-  //     tagId = newTagData.id;
-  //   } else {
-  //     tagId = existingTag.id;
-  //   }
-
-  //   const { error: linkError } = await supabase
-  //     .from("note_tags")
-  //     .insert({ note_id: noteId, tag_id: tagId, user_id: user.id });
-
-  //   if (linkError) {
-  //     console.error("Error linking tag to note:", linkError);
-  //     toast({
-  //       title: "Error",
-  //       status: "error",
-  //     });
-  //   } else {
-  //     fetchTags();
-  //     setNewTag("");
-  //   }
-  // };
-
-  // const removeTag = async (tagId) => {
-  //   console.log("remove tag: ", tagId);
-  //   const { error } = await supabase
-  //     .from("note_tags")
-  //     .delete()
-  //     .eq("note_id", noteId)
-  //     .eq("tag_id", tagId)
-  //     .eq("user_id", user.id);
-
-  //   if (error) {
-  //     console.error("Error removing tag:", error);
-  //     toast({
-  //       title: "Error",
-  //       description: "An error occurred while removing the tag.",
-  //       status: "error",
-  //     });
-  //   } else {
-  //     fetchTags();
-  //     toast({
-  //       title: "Tag Deleted",
-  //       description: "The tag has been successfully deleted.",
-  //       status: "success",
-  //     });
-  //   }
-  // };
 
   return (
     <NotesContext.Provider
