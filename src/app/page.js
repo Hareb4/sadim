@@ -46,7 +46,7 @@ export default function Home() {
     >
       <div className="flex flex-row justify-between items-center mx-3 bg-opacity-20 p-2 rounded-md">
         <div className="flex flex-row gap-4 items-baseline">
-          <p className="font-bold text-xl text-fca311">{arabicDataset.name}</p>
+          <p className="font-bold text-xl text-fca311">{arabicDataset.name}حارب </p>
           <div className="hidden sm:flex sm:flex-row-reverse sm:justify-between sm:items-center sm:gap-4">
             <p dir="rtl" className="text-e5e5e5">
               {arabicDataset.docs}
