@@ -6,6 +6,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import Sidebar from "@/components/layout/Sidebar";
 import { useTheme } from "next-themes";
+import { NotesProvider } from "@/context/NotesContext";
 
 const ibmarabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
@@ -66,21 +67,23 @@ export default function Layout({ children }) {
 
   return (
     <ProtectedRoute>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <div
-          className={`h-screen flex flex-col sm:flex-row-reverse ${ibmarabic.className}`}
-        >
-          {/* Sidebar */}
-          {isSidebarVisible && <Sidebar />}
+      <NotesProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <div
+            className={`h-screen flex flex-col sm:flex-row-reverse ${ibmarabic.className}`}
+          >
+            {/* Sidebar */}
+            {isSidebarVisible && <Sidebar />}
 
-          {/* Main Content */}
-          <div className="flex-1 overflow-hidden hide-scrollbar">
-            <main className="h-full overflow-y-auto overflow-x-hidden hide-scrollbar">
-              {children}
-            </main>
+            {/* Main Content */}
+            <div className="flex-1 overflow-hidden hide-scrollbar">
+              <main className="h-full overflow-y-auto overflow-x-hidden hide-scrollbar">
+                {children}
+              </main>
+            </div>
           </div>
-        </div>
-      </ThemeProvider>
+        </ThemeProvider>
+      </NotesProvider>
     </ProtectedRoute>
   );
 }
